@@ -9,7 +9,7 @@
 
 async function request(action, payload = {}) {
   const token = await getToken();
-  const response = await fetch('/api', {
+  const response = await fetch('/.netlify/functions/sheets', {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
