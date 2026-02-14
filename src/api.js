@@ -1,15 +1,15 @@
-async function getToken() {
+﻿async function getToken() {
   const identity = window.netlifyIdentity;
   const user = identity?.currentUser();
   if (!user) {
-    throw new Error('Usu�rio n�o autenticado.');
+    throw new Error('Usuário não autenticado.');
   }
   return user.jwt();
 }
 
 async function request(action, payload = {}) {
   const token = await getToken();
-  const response = await fetch('/.netlify/functions/sheets', {
+  const response = await fetch('/api', {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
@@ -18,9 +18,16 @@ async function request(action, payload = {}) {
     body: JSON.stringify({ action, ...payload }),
   });
 
-  const data = await response.json();
+  const raw = await response.text();
+  let data = null;
+  try {
+    data = raw ? JSON.parse(raw) : {};
+  } catch {
+    throw new Error(`Resposta inválida da API (${response.status}).`);
+  }
+
   if (!response.ok) {
-    throw new Error(data.error || 'Falha na API');
+    throw new Error(data.error || `Falha na API (${response.status})`);
   }
   return data;
 }
