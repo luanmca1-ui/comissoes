@@ -1,0 +1,21 @@
+{
+  "name": "comissoes-netlify-sheets",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "googleapis": "^144.0.0",
+    "jose": "^5.9.6"
+  },
+  "devDependencies": {
+    "vite": "^5.4.11"
+  }
+}

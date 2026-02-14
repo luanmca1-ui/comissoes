@@ -1,0 +1,48 @@
+<!--
+README RÁPIDO
+
+1) Rodar local
+- npm i
+- npm run dev
+
+2) Deploy Netlify
+- Suba este repositório para GitHub
+- No Netlify: Add new site -> Import from Git
+- Build command: npm run build
+- Publish directory: dist
+- Functions directory: netlify/functions
+
+3) Netlify Identity
+- No painel do site Netlify: Identity -> Enable Identity
+- Em Registration preferences, escolha Invite only ou Open conforme sua política
+- Crie usuários por e-mail/senha em Identity -> Users
+
+4) Google Sheets + Service Account
+- Crie projeto no Google Cloud
+- Ative Google Sheets API
+- Crie Service Account e chave JSON
+- Compartilhe a planilha com o e-mail da Service Account (permissão de editor)
+
+5) Variáveis de ambiente (Netlify e local)
+- GOOGLE_SHEETS_ID
+- GOOGLE_CLIENT_EMAIL
+- GOOGLE_PRIVATE_KEY (copiar com \n e o backend corrige para quebras reais)
+
+6) Observação importante
+- O sistema considera o site como editor oficial
+- Toda operação CREATE/UPDATE/DELETE feita pelo site gera LOG no backend
+-->
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comissões</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
